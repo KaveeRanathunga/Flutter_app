@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'Screens/Settings/accountsScreen.dart';
 
 
 void main() {
@@ -52,15 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
-  void showAccount() {
-    setState(() {
-      showEmail = !showEmail;
-    });
-  }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -153,19 +145,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       onTap: (){
-                        showAccount();
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AccountsScreen(),
+                          ),
+                        );
                       },
-                    ),
-
-                    if (showEmail)
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          SizedBox(height: 10),
-                          Text("📧 priyanjithranathunga@gmail.com"),
-                          Text("📧 sample123@gmail.com"),
-                      ],  
                     ),
                     
                     ListTile(
