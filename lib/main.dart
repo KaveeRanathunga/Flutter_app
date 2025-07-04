@@ -21,9 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //debugShowCheckedModeBanner: false,
+       
       locale: DevicePreview.locale(context), // Use the locale from DevicePreview 
-      //debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       builder: DevicePreview.appBuilder,
       theme: ThemeData(
@@ -36,9 +35,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
- 
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -48,10 +45,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool showEmail = false;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void showAccount() {
+    setState(() {
+      showEmail = !showEmail;
     });
   }
 
@@ -135,15 +139,79 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             // Settings Tab Content
-            Center(
+            Container(
+              color: const Color.fromARGB(255, 255, 255, 255),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.settings, size: 100, color: Colors.grey),
-                  Text('Settings Page', style: Theme.of(context).textTheme.headlineMedium),
-                ],
-              ),
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile( 
+                      leading: Icon(Icons.person),
+                      title:  Text('Account'),
+                      tileColor: const Color.fromARGB(255, 235, 137, 137),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      onTap: (){
+                        showAccount();
+
+                      },
+                    ),
+
+                    if (showEmail)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SizedBox(height: 10),
+                          Text("📧 priyanjithranathunga@gmail.com"),
+                          Text("📧 sample123@gmail.com"),
+                      ],  
+                    ),
+                    
+                    ListTile(
+                      leading: Icon(Icons.notifications),
+                      title: Text('Notification'),
+                      onTap: () {
+                        // Handle notification tap
+                      },
+                    ),
+
+                    ListTile(
+                      leading: Icon(Icons.palette),
+                      title: Text('Appearance'),
+                      onTap: () {
+                        // Handle appearance tap
+                      },
+                    ),
+
+                    ListTile(
+                      leading: Icon(Icons.security),
+                      title: Text('Privacy & Security'),
+                      onTap: () {
+                        // Handle privacy & security tap
+                      },
+                    ),  
+
+                    ListTile(
+                      leading: Icon(Icons.help),
+                      title: Text('Help and Support'),
+                      onTap: () {
+                        // Handle help and support tap
+                      },
+                    ),
+
+                    ListTile(
+                      leading: Icon(Icons.info),
+                      title: Text('About'),
+                      onTap: () {
+                        // Handle about tap
+                      },
+                    ),
+
+                  ],
+                ),
             ),
+             
 
 
             // Info Tab Content
